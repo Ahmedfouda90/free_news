@@ -12,11 +12,12 @@ class ScienceScreen extends StatelessWidget {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        // Checking the state to determine what to display
         if (state is NewsScienceLoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is NewsScienceSuccessfulState&&NewsCubit.get(context).currentIndex==2||state is NewsChangeBottomBarState) {
+        } else if (state is NewsScienceSuccessfulState&&NewsCubit.get(context).currentIndex==2||state is NewsChangeBottomBarState||state is NewsChangeModeState) {
           // Display the list of business articles
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
@@ -39,7 +40,7 @@ class ScienceScreen extends StatelessWidget {
           // Handle other states if needed
 
           return const Center(
-            child: Text('Unexpected state: loading'),
+            child: Text('Unexpected state'),
           );
         }
       },

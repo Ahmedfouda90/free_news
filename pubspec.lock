@@ -108,7 +108,7 @@ packages:
     source: sdk
     version: "0.0.0"
   hexcolor:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: hexcolor
       url: "https://pub.dartlang.org"

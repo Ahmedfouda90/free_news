@@ -42,13 +42,13 @@ Widget buildItem(article,context) => Container(
                       maxLines: 7,
                       '${article["content"]}',
                       style:
-                      //Theme.of(context).textTheme.bodyLarge
-                      TextStyle(
+                      Theme.of(context).textTheme.bodyLarge,
+                /*      TextStyle(
                         // overflow:TextOverflow.ellipsis,
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                         color: Colors.black
-                      )
+                      )*/
 
                   ),
                 ),

@@ -17,7 +17,7 @@ class SportsScreen extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is NewsSportsSuccessfulState&&NewsCubit.get(context).currentIndex==1||state is NewsChangeBottomBarState) {
+        } else if (state is NewsSportsSuccessfulState&&NewsCubit.get(context).currentIndex==1||state is NewsChangeModeState) {
           // Display the list of business articles
           return ListView.separated(
             physics: const BouncingScrollPhysics(),

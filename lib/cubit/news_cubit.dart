@@ -34,7 +34,6 @@ class NewsCubit extends Cubit<NewsStates> {
     BottomNavigationBarItem(
         icon: Icon(
           Icons.tab,
-          color: Colors.black,
         ),
         label: ' Business'),
     BottomNavigationBarItem(icon: Icon(Icons.sports), label: 'Sports'),
@@ -106,19 +105,22 @@ if(sports.length==0)
 
   void getScience() {
     emit(NewsScienceLoadingState());
+if(science.length==0) {
+      DioHelper.getData(url: 'api/1/news', query: {
+        'country': 'us',
+        'category': 'science',
+        "apiKey": 'pub_3373522609a30a383891bd1d18e8608c36725'
+      }).then((value) {
+        science = value.data['results'];
+        emit(NewsScienceSuccessfulState());
+      }).catchError((error) {
+        // print(error);
+        emit(NewsScienceErrorState(error.toString()));
+      });
+    }else{
+  emit(NewsScienceSuccessfulState());
 
-    DioHelper.getData(url: 'api/1/news', query: {
-      'country': 'us',
-      'category': 'science',
-      "apiKey": 'pub_3373522609a30a383891bd1d18e8608c36725'
-    }).then((value) {
-
-      science = value.data['results'];
-      emit(NewsScienceSuccessfulState());
-    }).catchError((error) {
-      // print(error);
-      emit(NewsScienceErrorState(error.toString()));
-    });
+}
   }
 
   changeIndex(index) {
@@ -161,9 +163,17 @@ if(sports.length==0)
       emit(NewsSearchErrorState(error.toString()));
     });
   }
-}
-/*
   void changeMode({bool? fromShared}) {
+
+      isDark = !isDark;
+
+      emit(NewsChangeModeState());
+
+    // emit(NewsChangeModeState());
+  }
+}
+
+/*void changeMode({bool? fromShared}) {
     if (fromShared != null) {
       isDark = fromShared;
       emit(NewsChangeModeState());
@@ -176,8 +186,7 @@ if(sports.length==0)
     }
 
     // emit(NewsChangeModeState());
-  }
-*/
+  }*/
 /*
   void getBusiness() {
     emit(NewsBusinessLoadingState());

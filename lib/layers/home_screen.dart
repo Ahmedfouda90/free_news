@@ -10,10 +10,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => NewsCubit()..getBusiness(),
+    return
 
-      child: BlocConsumer<NewsCubit, NewsStates>(
+      BlocConsumer<NewsCubit, NewsStates>(
         listener: (context, state) {},
         builder: (context, state) {
           NewsCubit cubit = NewsCubit.get(context);
@@ -39,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    // cubit.changeMode();
+                    cubit.changeMode();
                   },
                   icon: const Icon(Icons.brightness_4_rounded),
                 )
@@ -49,8 +48,6 @@ class HomeScreen extends StatelessWidget {
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
                 elevation: 100,
-                backgroundColor: Colors.greenAccent,
-                type: BottomNavigationBarType.fixed,
                 currentIndex: cubit.currentIndex,
                 onTap: (index) {
                   cubit.changeIndex(index);
@@ -58,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                 items: cubit.bottomItems),
           );
         },
-      ),
+
     );
   }
 }

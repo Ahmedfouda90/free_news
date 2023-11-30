@@ -19,13 +19,16 @@ class BusinessScreen extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is NewsBusinessSuccessfulState&&NewsCubit.get(context).currentIndex==0||state is NewsChangeBottomBarState) {
+        } else if (state is NewsBusinessSuccessfulState&&NewsCubit.get(context).currentIndex==0||state is NewsChangeBottomBarState||state is NewsChangeModeState) {
           // Display the list of business articles
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
                 buildItem(NewsCubit.get(context).business[index], context),
-            separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) => const Divider(
+              color: Colors.grey,
+              height: 5,
+            ),
             itemCount: NewsCubit.get(context).business.length,
           );
         } else if (state is NewsBusinessErrorState) {
