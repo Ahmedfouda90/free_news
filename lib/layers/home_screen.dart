@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    cubit.changeMode();
+                    cubit.changeAppMode();
                   },
                   icon: const Icon(Icons.brightness_4_rounded),
                 )

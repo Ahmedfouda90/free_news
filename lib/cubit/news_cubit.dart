@@ -6,6 +6,7 @@ import 'package:free_news/layers/buisness_screen.dart';
 import 'package:free_news/layers/science_screen.dart';
 import 'package:free_news/layers/settings_screen.dart';
 import 'package:free_news/layers/sports_screen.dart';
+import 'package:free_news/net_work/local/cache_helper.dart';
 import 'package:free_news/net_work/remote/dio_helper.dart';
 
 
@@ -161,11 +162,21 @@ if(science.length==0) {
   }
   bool isDark = true;
 
-  void changeMode(/*{bool? fromShared}*/) {
-
-      isDark = !isDark;
-
+  void changeAppMode({bool? fromShared}) {
+    if(fromShared!=null){
+      isDark=fromShared;
       emit(NewsChangeModeState());
+
+    }else{
+      isDark = !isDark;
+      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value) {
+        emit(NewsChangeModeState());
+
+      });
+    }
+
+
+
 
     // emit(NewsChangeModeState());
   }
