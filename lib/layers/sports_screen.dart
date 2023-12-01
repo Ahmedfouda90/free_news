@@ -17,13 +17,16 @@ class SportsScreen extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is NewsSportsSuccessfulState&&NewsCubit.get(context).currentIndex==1||state is NewsChangeModeState) {
+        } else if (state is NewsSportsSuccessfulState&&NewsCubit.get(context).currentIndex==1||state is NewsChangeModeState||state is NewsChangeBottomBarState) {
           // Display the list of business articles
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
                 buildItem(NewsCubit.get(context).sports[index], context),
-            separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) => const Divider(
+              color: Colors.grey,
+              height: 5,
+            ),
             itemCount: NewsCubit.get(context).sports.length,
           );
         } else if (state is NewsSportsErrorState) {

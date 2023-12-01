@@ -6,7 +6,6 @@ import '../cubit/news_states.dart';
 import '../custom_widgets/item_builder.dart';
 
 class ScienceScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsStates>(
@@ -17,13 +16,19 @@ class ScienceScreen extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is NewsScienceSuccessfulState&&NewsCubit.get(context).currentIndex==2||state is NewsChangeBottomBarState||state is NewsChangeModeState) {
+        } else if (state is NewsScienceSuccessfulState &&
+                NewsCubit.get(context).currentIndex == 2 ||
+            state is NewsChangeBottomBarState ||
+            state is NewsChangeModeState) {
           // Display the list of business articles
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
                 buildItem(NewsCubit.get(context).science[index], context),
-            separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) => const Divider(
+              color: Colors.grey,
+              height: 5,
+            ),
             itemCount: NewsCubit.get(context).science.length,
           );
         } else if (state is NewsScienceErrorState) {
@@ -31,12 +36,12 @@ class ScienceScreen extends StatelessWidget {
           return Center(
             child: Text('Error: ${state.error}'),
           );
-        }else if (state is NewsInitialState) {
+        } else if (state is NewsInitialState) {
           // Display an error message
           return Center(
             child: Text('Error: ${state}'),
           );
-        }  else {
+        } else {
           // Handle other states if needed
 
           return const Center(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:free_news/cubit/news_cubit.dart';
 
-Widget buildItem(article,context) => Container(
+Widget buildItem(results,context) => Container(
       //this context for this line as he required a context=> style:Theme.of(context).textTheme.bodyLarge
       padding: EdgeInsets.all(10),
       width: 100,
@@ -15,7 +15,7 @@ Widget buildItem(article,context) => Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                image: NetworkImage('${article["image_url"]}'),
+                image: NetworkImage('${results["image_url"]}'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -40,7 +40,7 @@ Widget buildItem(article,context) => Container(
                   child: Text(
                       overflow: TextOverflow.ellipsis,
                       maxLines: 7,
-                      '${article["content"]}',
+                      '${results["content"]}',
                       style:
                       Theme.of(context).textTheme.bodyLarge,
                 /*      TextStyle(
@@ -55,7 +55,7 @@ Widget buildItem(article,context) => Container(
                 SizedBox(height: 10),
                 Text(
                   // publishedAt  description content author
-                  '${article["pubDate"]}',
+                  '${results["pubDate"]}',
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.grey,

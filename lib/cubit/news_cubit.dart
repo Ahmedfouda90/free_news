@@ -141,7 +141,6 @@ if(science.length==0) {
     emit(NewsChangeBottomBarState());
   }
 
-  bool isDark = false;
 
 
   List<dynamic> search = [];
@@ -149,21 +148,20 @@ if(science.length==0) {
   void getSearch( String value) {
     emit(NewsSearchLoadingState());
     search = [];
-    DioHelper.getData(url: 'v2/everything', query: {
+    DioHelper.getData(url: 'api/1/news', query: {
       'q': '$value',
-      "apiKey": '65f7f556ec76449fa7dc7c0069f040ca'
-      // 'dd8264b8dbd64280910cdedf0274f920'
+      "apiKey": 'pub_3373522609a30a383891bd1d18e8608c36725'
     }).then((value) {
-      // print(value.data['articles'][0]['title']);
-
-      search = value.data['articles'];
+      search = value.data['results'];
       emit(NewsSearchSuccessfulState());
     }).catchError((error) {
       // print(error);
       emit(NewsSearchErrorState(error.toString()));
     });
   }
-  void changeMode({bool? fromShared}) {
+  bool isDark = true;
+
+  void changeMode(/*{bool? fromShared}*/) {
 
       isDark = !isDark;
 

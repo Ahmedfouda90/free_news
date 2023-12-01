@@ -25,7 +25,7 @@ class FreeNews extends StatelessWidget {
      listener: (context,state){},
      builder: (context,state){
        return MaterialApp(
-         home: HomeScreen(),
+         home: const HomeScreen(),
          debugShowCheckedModeBanner: false,
          theme: ThemeData(
            primarySwatch: Colors.deepOrange,
@@ -69,7 +69,7 @@ class FreeNews extends StatelessWidget {
          darkTheme: ThemeData(
 
            primarySwatch: Colors.deepOrange,
-           scaffoldBackgroundColor: /*NewsCubit.get(context).isDark? Colors.grey :Colors.white*/ HexColor('333739'),
+           scaffoldBackgroundColor: HexColor('333739'),
            backgroundColor: HexColor('333739'),
            appBarTheme: AppBarTheme(
              titleSpacing: 20.0,
@@ -91,7 +91,7 @@ class FreeNews extends StatelessWidget {
            floatingActionButtonTheme: const FloatingActionButtonThemeData(
              backgroundColor: Colors.deepOrange,
            ),
-           bottomNavigationBarTheme: BottomNavigationBarThemeData(
+           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
              type: BottomNavigationBarType.fixed,
              selectedItemColor: Colors.deepOrange,
              unselectedItemColor: Colors.white,
